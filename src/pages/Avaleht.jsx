@@ -1,28 +1,39 @@
 import { useState } from "react";
 
 function Avaleht() {
-		const tegelased = [
-			{VÕTI: "Mickey", VÕTI2: "Mouse", VÕTI3: "Disneyland"},
-			{VÕTI: "Minnie", VÕTI2: "Mouse", VÕTI3: "Disneyland"},
-			{VÕTI: "Winnie", VÕTI2: "Pooh", VÕTI3: "Hundred Acre Wood"},
-			{VÕTI: "Roo", VÕTI2: "Kangaroo", VÕTI3: "Hundred Acre Wood"},
-			{VÕTI: "Scooby", VÕTI2: "Doo", VÕTI3: "Crystal Cove"}
-		];
+		// const tegelased = [
+		// 	{eesnimi: "Mickey", perenimi: "Mouse", teema: "Disneyland", vanus: 7},
+		// 	{eesnimi: "Minnie", perenimi: "Mouse", teema: "Disneyland", vanus: 13},
+		// 	{eesnimi: "Winnie", perenimi: "Pooh", teema: "Hundred Acre Wood", vanus: 25},
+		// 	{eesnimi: "Roo", perenimi: "Kangaroo", teema: "Hundred Acre Wood", vanus: 2},
+		// 	{eesnimi: "Scooby", perenimi: "Doo", teema: "Crystal Cove", vanus: 76}
+		// ];
+
+		const tegelased = JSON.parse(localStorage.getItem("tegelased")) || [];
+
 
 		const kuvaNimi = (tegelane) => {
-			console.log(tegelane.VÕTI)
-			n2itaNime(tegelane.VÕTI)
+			console.log(tegelane.eesnimi)
+			n2itaNime(tegelane.eesnimi)
 		}
 
 		const [nimi, n2itaNime] = useState ("");
+
+		const valiTegelane = (klikutudTegelane) => {
+			const valitud = JSON.parse(localStorage.getItem("valitudTegelased")) || [];
+			valitud.push(klikutudTegelane);
+			localStorage.setItem(("valitudTegelased"), JSON.stringify(valitud))
+		}
 		
   return (<>
 	{nimi !== "" && <div>Klikkisid nimel: {nimi}</div>}
 	<div>{tegelased.map(tegelane =>
 	<div key={tegelane}>
-	<div>{tegelane.VÕTI}</div>
-	<div>{tegelane.VÕTI2}</div>
-	<div>{tegelane.VÕTI3}</div>
+	<div>{tegelane.eesnimi}</div>
+	<div>{tegelane.perenimi}</div>
+	<div>{tegelane.teema}</div>
+	<div>{tegelane.vanus}</div>
+	<button onClick={() => valiTegelane (tegelane)}>Vali</button>
 	<button onClick={() => kuvaNimi (tegelane)}>Kuva nimi</button>
 	</div>
 	)}

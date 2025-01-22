@@ -4,6 +4,7 @@ import Avaleht from './pages/Avaleht';
 import Lisategelane from './pages/LisaTegelane';
 import LisaTegelaneTeine from './pages/LisaTegelaneTeine';
 import ValitudTegelased from './pages/ValitudTegelased';
+import TegelaseLisamine from './pages/TegelaseLisamine';
 
 function App() {
 
@@ -21,12 +22,16 @@ function App() {
       <Link to = "/valitud-tegelased">
         <button>Valitud tegelased</button>
       </Link>
+      <Link to = "/tegelase-lisamine">
+        <button>Tegelase lisamine</button>
+      </Link>
 
       <Routes>
         <Route path='/' element ={<Avaleht/>} />
         <Route path='lisa-tegelane' element ={<Lisategelane/>} />
         <Route path='lisa-tegelaneteine' element ={<LisaTegelaneTeine/>} />
         <Route path='valitud-tegelased' element ={<ValitudTegelased/>} />
+        <Route path='tegelase-lisamine' element ={<TegelaseLisamine/>} />
       </Routes>
     </div>
   )
